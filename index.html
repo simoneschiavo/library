@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./script.js" defer></script>
+    <title>Project Library</title>
+</head>
+<body>
+    <h1>Hello Simone!</h1>
+    <p class="subtitle">Explore the books in your library and add new ones</p>
+    <button class="add-book"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>Add new book</button>
+    <dialog class="add-book-dialog">
+        <button class="close-dialog">x</button>
+        <h3 class="dialog-header">Add your new book to the library</h3>
+        <form action="" method="post">
+            <div class="choose-title">
+                <label for="book-title">Title*</label>
+                <input type="text" name="book-title" id="book-title" required>
+            </div>
+            <div class="choose-author">
+                <label for="book-author">Author*</label>
+                <input type="text" name="book-author" id="book-author" required>
+            </div>
+            <div class="choose-pages">
+                <label for="book-pages">Pages*</label>
+                <input type="number" name="book-pages" id="book-pages" min="1">
+            </div>
+            <div class="choose-score">
+                <label for="book-score">Score*</label>
+                <input type="text" name="book-score" id="book-score" required>
+            </div>
+            <div class="choose-status">
+                <label for="book-status">Status*</label>
+                <select name="book-status" id="book-status" required>
+                    <option value="not-started" selected="selected">Not started</option>
+                    <option value="reading">Currently reading</option>
+                    <option value="read">Completed</option>
+                </select>
+            </div>
+            <div class="choose-cover">
+                <label for="book-cover">Cover URL</label>
+                <input type="url" name="book-cover" id="book-cover">
+            </div>
+            <!-- <button class="confirm-button">Add book</button> -->
+            <input type="submit" value="Add Book" class="confirm-button">
+        </form>
+    </dialog>
+    <div class="books-container"></div>
+</body>
+</html>
