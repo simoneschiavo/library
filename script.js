@@ -11,50 +11,56 @@ const dialogBookScore = document.querySelector("input#book-score");
 const dialogBookStatus = document.querySelector("select#book-status");
 const dialogBookCover = document.querySelector("input#book-cover");
 
+// Create the Book class
+class Book {
+  constructor(
+    title,
+    author,
+    pages,
+    score,
+    status,
+    cover = "./images/no-image-ph.png"
+  ) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.score = score;
+    this.status = status;
+    this.cover = cover;
+  }
+
+  bookReading() {
+    this.status = "reading";
+  }
+
+  bookCompleted() {
+    this.status = "read";
+  }
+
+  deleteBook(index) {
+    myLibrary.splice(index, 1);
+    createLibrary();
+  }
+};
+
 let myLibrary = [
-    new Book(
-        "Harry Potter and the Prisoner of Azkaban",
-        "J.K. Rowling",
-        480,
-        "4,5",
-        "read",
-        "https://m.media-amazon.com/images/I/71NaVwWsRDL._SY466_.jpg",
-    ),
-  new Book (
+  new Book(
+    "Harry Potter and the Prisoner of Azkaban",
+    "J.K. Rowling",
+    480,
+    "4,5",
+    "read",
+    "https://m.media-amazon.com/images/I/71NaVwWsRDL._SY466_.jpg"
+  ),
+  new Book(
     "The Structure of Scientific Revolutions",
     "T.S. Kuhn",
     264,
     "4,3",
     "not-read",
-    "./images/no-image-ph.png",
+    "./images/no-image-ph.png"
   ),
 ];
-
-function Book(
-  title,
-  author,
-  pages,
-  score,
-  status,
-  cover = "./images/no-image-ph.png"
-) {
-    (this.title = title),
-    (this.author = author),
-    (this.pages = pages),
-    (this.score = score),
-    (this.status = status),
-    (this.cover = cover);
-}
-
-// Add book reading method
-Book.prototype.bookReading = function () {
-    this.status = "reading";
-};
-
-// Add book completed method
-Book.prototype.bookCompleted = function () {
-    this.status = "read";
-};
 
 function createNewBookCard(book, index) {
     // Create book card
@@ -103,7 +109,7 @@ function createNewBookCard(book, index) {
     deleteButton.innerHTML =
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.09 20C13.21 20.72 13.46 21.39 13.81 22H6C4.89 22 4 21.11 4 20V4C4 2.9 4.89 2 6 2H18C19.11 2 20 2.9 20 4V13.09C19.67 13.04 19.34 13 19 13C18.66 13 18.33 13.04 18 13.09V4H13V12L10.5 9.75L8 12V4H6V20H13.09M22.54 16.88L21.12 15.47L19 17.59L16.88 15.47L15.47 16.88L17.59 19L15.47 21.12L16.88 22.54L19 20.41L21.12 22.54L22.54 21.12L20.41 19L22.54 16.88Z" /></svg>';
     deleteButton.addEventListener("click", () => {
-        deleteBook(index);
+        book.deleteBook(index);
     });
     bookActionButtons.appendChild(deleteButton);
 
@@ -193,9 +199,3 @@ confirmButton.addEventListener("click", (e) => {
   addBookToLibrary();
   dialog.close();
 });
-
-// Delete book function
-function deleteBook(index) {
-    myLibrary.splice(index, 1);
-    createLibrary();
-};
